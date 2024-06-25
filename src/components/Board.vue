@@ -74,19 +74,24 @@ if(localStorage.getItem('gameongoing')){
         gameongoing.value = true
     }
     status_msg.value = localStorage.getItem('status_msg')
-    guess_count.value = localStorage.getItem('guess_count')
-    hidden_clues.value =JSON.parse(localStorage.getItem('hidden_clues'))
-    attempted_words.value =JSON.parse(localStorage.getItem('attempted_words'))
+
 }
 
     (getword().then((data)=>{
-word.value = data[1]
-        try{clues.value = data[0]['theme'].slice(0,5)}
-        catch{
-            getword("swim").then((data)=>{
+
+
+if (data[0]['theme'].length<5){
+    
+    getword(true).then((data)=>{
                 clues.value = data[0]['theme'].slice(0,5)
+                word.value = data[1]
             })
-        }
+
+}
+else{
+    clues.value = data[0]['theme'].slice(0,5)
+    word.value = data[1]
+}
 
     }))
     
@@ -109,24 +114,22 @@ hidden_clues.value = clues.value.splice(1,4)
 
 localStorage.setItem("gameongoing", false)
 localStorage.setItem("status_msg", msgs[1])
-localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
+
         return
     }
     else{    
         attempted_words.value.push(guess_word)}
-        localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
         localStorage.setItem("gameongoing", true)
-        localStorage.setItem("guess_count", guess_count.value)
-        localStorage.setItem("attempted_words", JSON.stringify(attempted_words.value))
+
 
     if(guess_word.toLowerCase()!=word.value.toLowerCase()){
         
         
         hidden_clues.value[guess_count.value-1] = clues.value[guess_count.value]
         current_guess.value = ''
-        localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
+
         localStorage.setItem("gameongoing", true)
-        localStorage.setItem("guess_count", guess_count.value)
+
     }
     else {
         gameongoing.value = false
@@ -134,8 +137,7 @@ localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
         status_msg.value = msgs[0]
         localStorage.setItem("gameongoing", false)
         localStorage.setItem("status_msg", msgs[0])
-     
-        localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
+
     }
    
 }

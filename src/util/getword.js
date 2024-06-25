@@ -1,8 +1,15 @@
 import { generate, count } from "random-words";
 let date = new Date()
 
-export async function getword(){
-	let word = generate({ min: 1, max: 1, seed: date.toDateString() })[0]
+export async function getword(force = false){
+	let word = null
+	if(force){
+	word = "swim"
+	}
+	else{
+	word = generate({ min: 1, max: 1, seed: date.toDateString() })[0]
+	}
+	
     const url = `https://twinword-twinword-bundle-v1.p.rapidapi.com/word_theme/?entry=${word}`;
 const options = {
 	method: 'GET',
