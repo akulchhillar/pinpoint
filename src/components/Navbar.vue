@@ -4,7 +4,7 @@
 
   </div>
   <div class="navbar-center">
-    <a class="btn btn-ghost text-xl font-Poppins">Pinpoint</a>
+    <a class="btn btn-ghost text-xl font-Poppins">📍 Pinpoint</a>
   </div>
   <div class="navbar-end">
 

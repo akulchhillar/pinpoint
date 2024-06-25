@@ -74,7 +74,9 @@ if(localStorage.getItem('gameongoing')){
         gameongoing.value = true
     }
     status_msg.value = localStorage.getItem('status_msg')
+    guess_count.value = localStorage.getItem('guess_count')
     hidden_clues.value =JSON.parse(localStorage.getItem('hidden_clues'))
+    attempted_words.value =JSON.parse(localStorage.getItem('attempted_words'))
 }
 
     (getword().then((data)=>{
@@ -114,6 +116,8 @@ localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
         attempted_words.value.push(guess_word)}
         localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
         localStorage.setItem("gameongoing", true)
+        localStorage.setItem("guess_count", guess_count.value)
+        localStorage.setItem("attempted_words", JSON.stringify(attempted_words.value))
 
     if(guess_word.toLowerCase()!=word.value.toLowerCase()){
         
@@ -122,6 +126,7 @@ localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
         current_guess.value = ''
         localStorage.setItem("hidden_clues", JSON.stringify(hidden_clues.value))
         localStorage.setItem("gameongoing", true)
+        localStorage.setItem("guess_count", guess_count.value)
     }
     else {
         gameongoing.value = false
