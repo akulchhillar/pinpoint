@@ -42,7 +42,7 @@ items-center rounded-b-md w-96 shadow-xl">
 
 </div>
 </div>
-{{guess_count}}
+
 </template>
 
 <script setup>
