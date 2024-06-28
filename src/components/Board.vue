@@ -45,7 +45,7 @@ items-center rounded-b-md w-96 shadow-xl">
 
 </div>
 </div>
-{{ word }}
+
 </template>
 
 <script setup>
